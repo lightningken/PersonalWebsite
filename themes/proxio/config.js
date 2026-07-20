@@ -12,7 +12,7 @@ const CONFIG = {
   // 英雄区两个按钮，如果TEXT留空则隐藏按钮
   PROXIO_HERO_BUTTON_1_TEXT: '在 App Store 上查看', // 英雄区按钮
   PROXIO_HERO_BUTTON_1_URL:
-    'hhttps://apps.apple.com/us/app/navid-music/id6786164266?l=zh-Hans-CN', // 英雄区按钮
+    'https://apps.apple.com/app/id6786164266', // 英雄区按钮
   PROXIO_HERO_BUTTON_2_TEXT: '', // 英雄区按钮
   PROXIO_HERO_BUTTON_2_URL: '', // 英雄区按钮
   PROXIO_HERO_BUTTON_2_ICON: '', // 英雄区按钮2的图标，不需要则留空
@@ -210,37 +210,25 @@ const CONFIG = {
   // 页脚菜单
   PROXIO_FOOTER_LINKS: [
     {
-      name: '友情链接',
+      name: '链接',
       menus: [
         {
           title: '我的小红书',
           href: 'https://xhslink.com/m/7EpzsVn146a'
-        },
-        {
-          title: 'Navid Music',
-          href: 'https://navidmusic.cc.cd'
         }
       ]
     },
     {
-      name: '开发者',
+      name: '产品',
       menus: [
         { title: 'Github', href: 'https://github.com/tangly1024/NotionNext' },
         {
-          title: '开发帮助',
-          href: 'https://docs.tangly1024.com/article/how-to-develop-with-notion-next'
+          title: '隱私政策',
+          href: '/privacy-policy'
         },
         {
-          title: '功能反馈',
-          href: 'https://github.com/tangly1024/NotionNext/issues/new/choose'
-        },
-        {
-          title: '技术讨论',
-          href: 'https://github.com/tangly1024/NotionNext/discussions'
-        },
-        {
-          title: '关于作者',
-          href: 'https://blog.tangly1024.com/about'
+          title: '常见问题',
+          href: '/faqs'
         }
       ]
     }
