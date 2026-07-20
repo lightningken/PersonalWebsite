@@ -47,9 +47,9 @@ export const Logo = props => {
           priority
           src={siteInfo?.icon}
           width={24}
-          height={20}
+          height={24}
           alt={siteConfig('AUTHOR')}
-          className='mr-2 hidden md:inline-block'
+          className='mr-2 hidden md:inline-block object-contain'
         />
         {/* logo文字 */}
         <span
