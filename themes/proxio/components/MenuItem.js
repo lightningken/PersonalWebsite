@@ -76,19 +76,51 @@ export const MenuItem = ({ link, isOpen, toggleOpen }) => {
                 ? 'block opacity-100 visible'
                 : 'hidden opacity-0 invisible'
             }`}>
-            {link.subMenus.map((sLink, index) => (
-              <SmartLink
-                key={index}
-                href={sLink.href}
-                target={link?.target}
-                className='block rounded px-4 py-[10px] text-sm text-body-color hover:text-primary dark:text-dark-6 dark:hover:text-primary'>
-                {/* 子菜单 SubMenuItem */}
-                <span className='text-md ml-2 whitespace-nowrap'>
-                  {link?.icon && <i className={sLink.icon + ' mr-2 my-auto'} />}{' '}
-                  {sLink.title}
-                </span>
-              </SmartLink>
-            ))}
+              {link.subMenus.map((sLink, index) => {
+              const rawHref = sLink.href?.trim() || '#'
+
+              const normalizeLangHref = href => {
+                if (!href || href === '#') return '#'
+
+                // 如果已經是完整 URL，直接用
+                if (href.startsWith('http://') || href.startsWith('https://')) {
+                  return href
+                }
+
+                // 語言短 slug，強制轉成根路徑
+                if (href === 'en') return '/en'
+                if (href === 'tc') return '/tc'
+                if (href === 'sc') return '/'
+
+                // 已經是 /en /tc /sc 這種，就直接用
+                if (href.startsWith('/')) return href
+
+                // 其他相對路徑，補 /
+                return `/${href}`
+              }
+
+              const href = normalizeLangHref(rawHref)
+
+              return (
+                <a
+                  key={index}
+                  href={href}
+                  target={link?.target}
+                  rel={link?.target === '_blank' ? 'noopener noreferrer' : undefined}
+                  className='block rounded px-4 py-[10px] text-sm text-body-color hover:text-primary dark:text-dark-6 dark:hover:text-primary'
+                  onClick={e => {
+                    if (href && href !== '#') {
+                      e.preventDefault()
+                      window.location.assign(href)
+                    }
+                  }}>
+                  <span className='text-md ml-2 whitespace-nowrap'>
+                    {sLink?.icon && <i className={sLink.icon + ' mr-2 my-auto'} />}{' '}
+                    {sLink.title}
+                  </span>
+                </a>
+              )
+            })}
           </div>
         </li>
       )}
