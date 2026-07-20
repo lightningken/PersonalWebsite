@@ -49,6 +49,22 @@ const SmartLink = ({ href, children, ...rest }) => {
 
   const isExternal = urlString.startsWith('http') && !urlString.startsWith(LINK)
 
+  const isAbsoluteUrl =
+  urlString.startsWith('http://') || urlString.startsWith('https://')
+  if (isAbsoluteUrl) {
+    const isSameSite = urlString.startsWith(LINK)
+
+    return (
+      <a
+        href={urlString}
+        {...filterDOMProps(rest)}
+        target={isSameSite ? rest.target : rest.target || '_blank'}
+        rel={isSameSite ? rest.rel : rest.rel || 'noopener noreferrer'}>
+        {children}
+      </a>
+    )
+  }
+
   const getPersistedQuery = () => {
     if (typeof window === 'undefined') return {}
     const queryString = window.location.search?.slice(1) || ''
