@@ -77,18 +77,20 @@ export const MenuItem = ({ link, isOpen, toggleOpen }) => {
                 : 'hidden opacity-0 invisible'
             }`}>
             {link.subMenus.map((sLink, index) => (
-              <SmartLink
-                key={index}
-                href={sLink.href}
-                target={link?.target}
-                className='block rounded px-4 py-[10px] text-sm text-body-color hover:text-primary dark:text-dark-6 dark:hover:text-primary'>
-                {/* 子菜单 SubMenuItem */}
-                <span className='text-md ml-2 whitespace-nowrap'>
-                  {link?.icon && <i className={sLink.icon + ' mr-2 my-auto'} />}{' '}
-                  {sLink.title}
-                </span>
-              </SmartLink>
-            ))}
+              <li key={index}>
+                <a
+                  href={sLink.href}
+                  onClick={(e) => {
+                    if (sLink.href?.startsWith('http')) {
+                      e.preventDefault()
+                      window.location.href = sLink.href
+                    }
+                  }}>
+      {link?.icon && <i className={link.icon} />}{' '}
+      {sLink.title}
+    </a>
+  </li>
+))}
           </div>
         </li>
       )}
