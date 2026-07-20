@@ -221,7 +221,6 @@ const CONFIG = {
     {
       name: '产品',
       menus: [
-        { title: 'Github', href: 'https://github.com/tangly1024/NotionNext' },
         {
           title: '隱私政策',
           href: '/privacy-policy'
