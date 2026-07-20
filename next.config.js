@@ -12,17 +12,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 
 // 扫描项目 /themes下的目录名
 const themes = scanSubdirectories(path.resolve(__dirname, 'themes'))
-
-async redirects() {
-  return [
-    {
-      source: '/:from(en|tc|sc)/:to(en|tc|sc)',
-      destination: '/:to',
-      permanent: false
-    }
-  ]
-}
-
 // 检测用户开启的多语言
 const locales = (function () {
   // 根据BLOG_NOTION_PAGE_ID 检查支持多少种语言数据.
